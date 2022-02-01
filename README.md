@@ -31,3 +31,6 @@ Run commands
   -change the google secret key and id on the env file to use google authentication
   register the redirect google urls
 
+## PREVIEW SITE
+You can view the live site here
+ [Amazon clone site ](https://amazon-clone-tawny-seven.vercel.app/)
