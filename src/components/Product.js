@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
 import { StarIcon } from '@heroicons/react/outline'
-
+import { useDispatch } from 'react-redux';
+import {addToBasket} from '../slices/basketSlice'
+import Currency from 'react-currency-formatter'
 
 function Product({ id, title, price, description, category, image }) {
     const MAX_RATING=5;
@@ -11,7 +13,16 @@ function Product({ id, title, price, description, category, image }) {
         Math.floor(Math.random() * (MAX_RATING - MIN_RATING +1))+ MIN_RATING
     )
     const [hasPrime]=useState( Math.random() < 0.5)
+    const dispatch=useDispatch();
 
+
+    const addItemToBacket =()=>{
+        const product={
+            id, title, price, description, category, image,rating,hasPrime
+        };
+        //send the product to the redux store
+        dispatch(addToBasket(product));
+    };
     return (
         <div className='relative flex flex-col m-5 bg-white z-30 p-10'>
             <p className='absolute top-2 right-2 text-xs italic text-gray-400'>{category}</p>
@@ -31,7 +42,9 @@ function Product({ id, title, price, description, category, image }) {
 
             <p className='text-xs my-2 line-clamp-2'>{description}</p>
             <div>
-                    <p className='mb-5'> $ {price}</p>
+                    <span className='mb-5'> 
+                    <Currency quantity={price} currency='USD'  />
+                    </span>
             </div>
 
             {hasPrime && (
@@ -42,7 +55,7 @@ function Product({ id, title, price, description, category, image }) {
 
             )} 
 
-            <button className='mt-auto button'>Add to Basket</button>
+            <button onClick={addItemToBacket} className='mt-auto button'>Add to Basket</button>
 
         </div>
     )

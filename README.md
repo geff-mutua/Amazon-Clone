@@ -26,3 +26,8 @@ Run commands
         - React Js
         - Tailwind CSS
 
+## GOOGLE AUTHENTICATION
+  -copy env.example to new file in the root folder as .env
+  -change the google secret key and id on the env file to use google authentication
+  register the redirect google urls
+
